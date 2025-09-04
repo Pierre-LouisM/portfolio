@@ -16,7 +16,7 @@ interface NetworkBackgroundProps {
 
 export default function NetworkBackground({ className = "" }: NetworkBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number | undefined>();
+  const animationRef = useRef<number | undefined>(undefined);
   const [nodes, setNodes] = useState<Node[]>([]);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
