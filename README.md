@@ -1,3 +1,7 @@
+# Portfolio
+
+Personal portfolio site built with Next.js, featuring a modern design with subtle indigo gradients and smooth animations.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
