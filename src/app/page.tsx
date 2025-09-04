@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRight, Linkedin, Mail } from 'lucide-react';
 import AIAgentToggle from '@/components/AIAgentToggle';
-import NetworkBackground from '@/components/NetworkBackground';
 import ContactForm from '@/components/ContactForm';
 import CredibilityBanner from '@/components/CredibilityBanner';
 
