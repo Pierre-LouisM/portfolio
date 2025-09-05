@@ -87,7 +87,7 @@ export default function AIAgentToggle() {
         }`}
       >
         <Bot size={16} />
-        AI Agent
+        AI Agent?
       </button>
 
       <AnimatePresence>
@@ -96,22 +96,32 @@ export default function AIAgentToggle() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
-            style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
+            className="fixed inset-0 z-50"
+            style={{ 
+              backgroundColor: 'rgba(0, 0, 0, 0.5)',
+              display: 'grid',
+              placeItems: 'center',
+              padding: '1rem'
+            }}
             onClick={() => setIsOpen(false)}
           >
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden"
+              className="bg-white rounded-xl shadow-2xl overflow-hidden"
+              style={{ 
+                width: '90vw',
+                maxWidth: '1024px',
+                maxHeight: '90vh'
+              }}
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
               <div className="flex items-center justify-between p-6 border-b border-gray-200">
                 <div>
-                  <h2 className="text-xl font-semibold text-gray-900">AI Agent Data</h2>
-                  <p className="text-gray-600 text-sm mt-1">Structured portfolio data for AI consumption</p>
+                  <h2 className="text-xl font-semibold text-gray-900">Structured Data for AI Agents</h2>
+                  <p className="text-gray-600 text-sm mt-1">Portfolio data in JSON format</p>
                 </div>
                 <div className="flex items-center gap-3">
                   <button
@@ -136,20 +146,6 @@ export default function AIAgentToggle() {
 
               {/* Content */}
               <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
-                <div className="bg-gray-50 rounded-lg p-4 mb-6">
-                  <h3 className="font-semibold text-gray-900 mb-2">Usage Instructions</h3>
-                  <p className="text-gray-700 text-sm mb-3">
-                    This structured data contains comprehensive information about Pierre-Louis Monnot&apos;s 
-                    professional background, skills, projects, and contact information in JSON format.
-                  </p>
-                  <div className="text-gray-700 text-sm space-y-1">
-                    <div>• Generate professional summaries and introductions</div>
-                    <div>• Answer questions about experience and capabilities</div>
-                    <div>• Provide project recommendations and insights</div>
-                    <div>• Facilitate networking opportunities</div>
-                  </div>
-                </div>
-
                 <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
                   <pre className="text-gray-100 text-sm font-mono whitespace-pre-wrap">
                     {JSON.stringify(structuredData, null, 2)}
