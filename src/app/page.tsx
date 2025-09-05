@@ -85,7 +85,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-7xl md:text-9xl font-black mb-6 leading-[0.9] tracking-tight">
+            <h1 className="text-5xl md:text-7xl font-black mb-6 leading-[0.9] tracking-tight">
               <span className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-600 bg-clip-text text-transparent">
                 Pierre-Louis
               </span>

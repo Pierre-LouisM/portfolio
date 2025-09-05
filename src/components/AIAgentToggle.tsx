@@ -3,40 +3,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Bot, X, Copy, Check } from 'lucide-react';
-import { cn } from '@/lib/utils';
 
-interface StructuredData {
-  personal: {
-    name: string;
-    title: string;
-    description: string;
-    location: string;
-    languages: string[];
-  };
-  experience: {
-    title: string;
-    organization: string;
-    period: string;
-    description: string;
-  }[];
-  skills: {
-    category: string;
-    items: string[];
-  }[];
-  projects: {
-    name: string;
-    description: string;
-    technologies: string[];
-    status: string;
-    link: string;
-  }[];
-  contact: {
-    linkedin: string;
-    email: string;
-  };
-}
-
-const structuredData: StructuredData = {
+const structuredData = {
   personal: {
     name: "Pierre-Louis Monnot",
     title: "AI Founder solving real problems",
@@ -97,7 +65,7 @@ const structuredData: StructuredData = {
 };
 
 export default function AIAgentToggle() {
-  const [isToggled, setIsToggled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -113,83 +81,80 @@ export default function AIAgentToggle() {
   return (
     <>
       <button
-        onClick={() => setIsToggled(!isToggled)}
-        className={cn(
-          "flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200",
-          isToggled 
-            ? "bg-gray-900 text-white border border-gray-900" 
-            : "border border-gray-300 hover:bg-gray-50 text-gray-700"
-        )}
+        onClick={() => setIsOpen(true)}
+        className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200 border border-gray-300 hover:bg-gray-50 text-gray-700 ${
+          isOpen ? 'bg-gray-100' : ''
+        }`}
       >
         <Bot size={16} />
         AI Agent
       </button>
 
       <AnimatePresence>
-        {isToggled && (
+        {isOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 z-50 flex items-start justify-center pt-16 p-4 overflow-y-auto"
-            onClick={(e) => {
-              if (e.target === e.currentTarget) {
-                setIsToggled(false);
-              }
-            }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
+            onClick={() => setIsOpen(false)}
           >
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="bg-white rounded-lg max-w-4xl w-full max-h-[calc(100vh-8rem)] overflow-hidden shadow-2xl my-4"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="bg-white rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden"
               onClick={(e) => e.stopPropagation()}
             >
+              {/* Header */}
               <div className="flex items-center justify-between p-6 border-b border-gray-200">
                 <div>
-                  <h2 className="text-xl font-semibold">AI Agent Data</h2>
-                  <p className="text-gray-600 mt-1">Structured portfolio data for AI consumption</p>
+                  <h2 className="text-xl font-semibold text-gray-900">AI Agent Data</h2>
+                  <p className="text-gray-600 text-sm mt-1">Structured portfolio data for AI consumption</p>
                 </div>
                 <div className="flex items-center gap-3">
                   <button
                     onClick={handleCopy}
-                    className={cn(
-                      "flex items-center gap-2 px-3 py-2 rounded-lg transition-colors",
+                    className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                       copied 
-                        ? "bg-green-100 text-green-800" 
-                        : "bg-gray-100 hover:bg-gray-200 text-gray-700"
-                    )}
+                        ? 'bg-green-100 text-green-800' 
+                        : 'bg-gray-100 hover:bg-gray-200 text-gray-700'
+                    }`}
                   >
                     {copied ? <Check size={16} /> : <Copy size={16} />}
-                    {copied ? "Copied!" : "Copy JSON"}
+                    {copied ? 'Copied!' : 'Copy JSON'}
                   </button>
                   <button
-                    onClick={() => setIsToggled(false)}
+                    onClick={() => setIsOpen(false)}
                     className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
                   >
                     <X size={20} />
                   </button>
                 </div>
               </div>
-              
-              <div className="p-6 overflow-auto max-h-[60vh]">
+
+              {/* Content */}
+              <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
                 <div className="bg-gray-50 rounded-lg p-4 mb-6">
                   <h3 className="font-semibold text-gray-900 mb-2">Usage Instructions</h3>
-                  <p className="text-gray-700 text-sm">
-                    This structured data contains comprehensive information about Pierre-Louis Monnot&apos;s professional background, 
-                    skills, projects, and contact information in a machine-readable JSON format. AI agents can use this data to:
+                  <p className="text-gray-700 text-sm mb-3">
+                    This structured data contains comprehensive information about Pierre-Louis Monnot&apos;s 
+                    professional background, skills, projects, and contact information in JSON format.
                   </p>
-                  <ul className="text-gray-700 text-sm mt-2 space-y-1">
-                    <li>• Generate professional summaries and introductions</li>
-                    <li>• Answer questions about experience and capabilities</li>
-                    <li>• Provide project recommendations and technical insights</li>
-                    <li>• Facilitate networking and collaboration opportunities</li>
-                  </ul>
+                  <div className="text-gray-700 text-sm space-y-1">
+                    <div>• Generate professional summaries and introductions</div>
+                    <div>• Answer questions about experience and capabilities</div>
+                    <div>• Provide project recommendations and insights</div>
+                    <div>• Facilitate networking opportunities</div>
+                  </div>
                 </div>
 
-                <pre className="bg-gray-900 text-gray-100 p-4 rounded-lg overflow-auto text-sm font-mono">
-                  {JSON.stringify(structuredData, null, 2)}
-                </pre>
+                <div className="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+                  <pre className="text-gray-100 text-sm font-mono whitespace-pre-wrap">
+                    {JSON.stringify(structuredData, null, 2)}
+                  </pre>
+                </div>
               </div>
             </motion.div>
           </motion.div>
