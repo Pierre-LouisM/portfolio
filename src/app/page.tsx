@@ -24,7 +24,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-indigo-50/70 text-gray-900">
       {/* Navigation */}
       <motion.nav 
         className={`fixed top-0 z-40 w-full transition-all duration-500 ${
@@ -37,7 +37,7 @@ export default function Home() {
           className={`mx-auto transition-all duration-500 ${
             isScrolled 
               ? 'max-w-md px-6 py-3 bg-white/70 backdrop-blur-xl border border-white/20 rounded-2xl shadow-lg shadow-black/5' 
-              : 'max-w-4xl px-6 py-4 bg-white/70 backdrop-blur-xl border-b border-white/30'
+              : 'max-w-4xl px-6 py-4 bg-white/70 backdrop-blur-xl border border-white/20 rounded-2xl shadow-lg shadow-black/5'
           }`}
         >
           <div className="flex justify-between items-center">
@@ -46,7 +46,7 @@ export default function Home() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="bg-gray-100/80 hover:bg-gray-200/80 px-3 py-1.5 rounded-full text-lg font-medium text-gray-900 hover:text-gray-600 transition-all duration-300 cursor-pointer"
+              className="bg-gray-900 hover:bg-gray-800 px-3 py-1.5 rounded-full text-lg font-medium text-white transition-all duration-300 cursor-pointer"
             >
               PLM
             </motion.button>
